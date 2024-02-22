@@ -1,14 +1,14 @@
 package accidentpack;
 
 
-public class Report implements Comparable<Report> {
- public Report(String startTime, String county, String state, double visibility) {
+public class Report {
+ public Report(String startTime, String county, String state, int severity) {
 	// Sets constructor for all variables of the report to be passed in
 	 
 	this.startTime = startTime; 
     this.state = state;
     this.county = county;
-    this.visibility = visibility;
+    this.severity = severity;
 	 
 	}
  	
@@ -18,7 +18,7 @@ public class Report implements Comparable<Report> {
 		return county;
 	}
 
-	public void setCounty(String street) {
+	public void setCounty(String county) {
 		this.county = county;
 	}
 
@@ -30,12 +30,12 @@ public class Report implements Comparable<Report> {
 		this.state = state;
 	}
 	
-	public double getVisibility() {
-		return visibility;
+	public double getSeverity() {
+		return severity;
 	}
 
-	public void setVisibility(double visibility) {
-		this.visibility = visibility;
+	public void setSeverity(int severity) {
+		this.severity = severity;
 	}
 	
 	public String getStart_time() {
@@ -49,14 +49,9 @@ public class Report implements Comparable<Report> {
 	private String startTime;
 	private String county;
 	private String state;
-	private double visibility;
+	private int severity;
 	
 	
-	@Override
-	//Compares this report to the other report and returns a value based on difference of visibility in the two reports.
-	public int compareTo(Report other) {
-		return Double.compare(visibility, other.getVisibility());
-	}
 
 
 }

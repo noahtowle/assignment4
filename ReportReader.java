@@ -39,12 +39,12 @@ public class ReportReader {
 	private ArrayList<Report> reportSetup(ArrayList<Report> reports, Scanner scanner, int index) {
 		String line = scanner.nextLine();
 		String[] values = line.split(",");
+		int severity = toInt(values[1]);
 		String startTime = values[2];
 		String county = values[6];
 		String state = values[7];
-		double visibility = toDouble(values[10]);
 		
-		Report report = new Report(startTime, county, state, visibility);
+		Report report = new Report(startTime, county, state, severity);
 		//add report to ArrayList
 		reports.add(report);
 		//return ArrayList
@@ -57,6 +57,15 @@ public class ReportReader {
             return Double.parseDouble(value);
         } catch (NumberFormatException e) {
             return 0.0; // Handle the case where the conversion fails
+        }
+    }
+    
+    // Converts report values to int
+    private int toInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0; // Handle the case where the conversion fails
         }
     }
     
