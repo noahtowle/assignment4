@@ -5,5 +5,6 @@ Team Leader: Noah Towle
 Task 1 and 3 completed Noah 
 Task 2 completed by Esther 
 
-
+To run the program use command line and ensure that your CD path is set to be in the same path as the program4.java file.
+Afterwards type, java program4 (csv filepath/csvfile.csv)
 
