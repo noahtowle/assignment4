@@ -33,6 +33,7 @@ public class program4 {
 	private static void printOutput(int minCounters, Queue<Report> reportQueue, ArrayList<Report> reports) {
 		String state = "CA";
     	String county = "Los Angeles";
+		//prints the data with given state/county input
         outputData(minCounters, state, county, reportQueue, reports);
         state = "FL";
         county = "Orange";
