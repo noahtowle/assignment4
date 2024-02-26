@@ -2,13 +2,14 @@ package accidentpack;
 
 
 public class Report {
- public Report(String startTime, String county, String state, int severity) {
+ public Report(String startTime, String county, String state, int severity, String date) {
 	// Sets constructor for all variables of the report to be passed in
 	 
 	this.startTime = startTime; 
     this.state = state;
     this.county = county;
     this.severity = severity;
+    this.setDate(date);
 	 
 	}
  	
@@ -46,10 +47,19 @@ public class Report {
 		this.startTime = start_time;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	private String startTime;
 	private String county;
 	private String state;
 	private int severity;
+	private String date;
 	
 	
 

@@ -43,8 +43,10 @@ public class ReportReader {
 		String startTime = values[2];
 		String county = values[6];
 		String state = values[7];
+		String[] timeValues = startTime.split(" ");
+		String date = timeValues[0];
 		
-		Report report = new Report(startTime, county, state, severity);
+		Report report = new Report(startTime, county, state, severity, date);
 		//add report to ArrayList
 		reports.add(report);
 		//return ArrayList
