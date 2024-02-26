@@ -15,7 +15,6 @@ public class ReportReader {
     }
 
     public ArrayList<Report> readReports() throws FileNotFoundException, ParseException {
-		long startTimer = System.currentTimeMillis();
         ArrayList<Report> reports = new ArrayList<Report>();
 
         try (Scanner scanner = new Scanner(new File(csvFilePath))) {
@@ -30,9 +29,7 @@ public class ReportReader {
                 reports = reportSetup(reports, scanner, index);
             }
         } 
-        long endTimer = System.currentTimeMillis();
-        long elapsedTime = (endTimer - startTimer) / 1000;
-        System.out.println(elapsedTime + " seconds to read the file");
+
         return reports;
     }
     // Creates and sets up individual reports.

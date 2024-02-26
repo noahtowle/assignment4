@@ -12,8 +12,6 @@ public class program4 {
         // C:/Users/Noah/eclipse-workspace/assignment2/src/accidents.csv
     	String csvFilePath = args[0];
     	int minCounters = 0;
-    	String state = "CA";
-    	String county = "Los Angeles";
     	Queue<Report> reportQueue = new LinkedList<>();
     	
 
@@ -22,8 +20,9 @@ public class program4 {
 
         //Sorts by start time of the accident
         sort(reports);
-        counterCalc(minCounters, state, county, reportQueue, reports);
         
+        //Outputs data based on the specified state/county combination
+        printOutput(minCounters, reportQueue, reports);
         
         //printFile(reports);
         
@@ -31,14 +30,53 @@ public class program4 {
 
 
 
-	private static void counterCalc(int minCounters, String state, String county, Queue<Report> reportQueue,
+	private static void printOutput(int minCounters, Queue<Report> reportQueue, ArrayList<Report> reports) {
+		String state = "CA";
+    	String county = "Los Angeles";
+        outputData(minCounters, state, county, reportQueue, reports);
+        state = "FL";
+        county = "Orange";
+        outputData(minCounters, state, county, reportQueue, reports);
+        state = "TX";
+        county = "Harris";
+        outputData(minCounters, state, county, reportQueue, reports);
+        state = "OH";
+        county = "Hamilton";
+        outputData(minCounters, state, county, reportQueue, reports);
+        state = "DE";
+        county = "New Castle";
+        outputData(minCounters, state, county, reportQueue, reports);
+	}
+
+
+
+	private static void outputData(int minCounters, String state, String county, Queue<Report> reportQueue,
+	        ArrayList<Report> reports) {
+		System.out.println("County: " + county);
+        System.out.println("State: " + state);
+		long startTimer = System.currentTimeMillis();
+        minCounters = counterCalc(minCounters, state, county, reportQueue, reports);
+        long endTimer = System.currentTimeMillis();
+        long elapsedTime = (endTimer - startTimer);
+        System.out.println(elapsedTime + " milliseconds to simulate the process");
+        System.out.println("Minimum number of counters: " + minCounters);
+        System.out.println("--------------------------------");
+	}
+
+
+
+	private static int counterCalc(int minCounters, String state, String county, Queue<Report> reportQueue,
 	        ArrayList<Report> reports) {
 		String tempDate = reports.get(0).getDate();
         
+		//Adds to queue based on county and state provided, only iterates forward when the date hasn't changed
         for (int i = 0; i < reports.size();) {
         	if (reports.get(i).getDate().equals(tempDate)) {
         		i++;
-        		if (reports.get(i).getState().equals(state) && reports.get(i).getCounty().equals(county)) {
+        		if (i == reports.size()) {
+        			return minCounters;
+        		}
+        		else if (reports.get(i).getState().equals(state) && reports.get(i).getCounty().equals(county)) {
             		reportQueue.add(reports.get(i));
             	}
         	}
@@ -46,8 +84,11 @@ public class program4 {
         		tempDate = reports.get(i).getDate();
         		//process method
         		minCounters = processQueue(minCounters, reportQueue);
+
+
         	}
         }
+        return minCounters;
 	}
 
 
@@ -80,14 +121,7 @@ public class program4 {
 
 
 	private static void sort(ArrayList<Report> reports) {
-		long startTimer = System.currentTimeMillis();
 		Collections.sort(reports, new timeComparator());
-		
-		long endTimer = System.currentTimeMillis();
-        long elapsedTime = (endTimer - startTimer) / 1000;
-        System.out.println(elapsedTime + " seconds to sort the file");
-        
-        System.out.println("Sorted based on start time:");
 	}
 	
 	private static void printFile(ArrayList<Report> reports) {
