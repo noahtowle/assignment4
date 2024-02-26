@@ -21,6 +21,19 @@ public class program4 {
         
     }
 
+
+	
+public class Queue<report>{     
+  public void enqueue(Report report) {
+
+
+    }
+
+    public Report dequeue() {
+       
+        return null;
+  }
+
 	private static void sort(ArrayList<Report> reports) {
 		long startTimer = System.currentTimeMillis();
 		Collections.sort(reports, new timeComparator());
